@@ -6,13 +6,27 @@ let personajes = [
 ];
 
 let niveles = [
-    {nombre: "nivel aventura"},
-    {nombre: "nivel infinito"}
+    {nombre: "Sendero Aventura", numNivel: 1},
+    {nombre: "Jungla Infinita", numNivel: 2}
 ];
 
+// clases
+
+class Nivel {
+    constructor(nivel){
+        this.nombre = nivel.nombre;
+        this.numNivel = nivel.numNivel;
+    }
+
+    mostrarNivel(){
+        alert(`${this.nombre}, Episodio: ${this.numNivel}`);
+    }
+}
 
 //variables
 
+let nivel1 = new Nivel(niveles[0]);
+let nivel2 = new Nivel(niveles[1]);
 let contador = 0;
 let verificador =  false;
 
@@ -39,19 +53,21 @@ const comenzarJuego = () =>{ //simula un contador de puntos al esquivar los enem
         return contador;
 }
 
-const elegirNivel = (opcion) =>{ // selector de niveles
+const elegirNivel = (opcion) =>{ //selector de niveles
     if (opcion === "1") {
         verificador = true;
-        alert("Has elegido el nivel Aventura");
+        alert("Selccionaste el modo de juego número 1");
+        nivel1.mostrarNivel();
         comenzarJuego();
     }else if (opcion === "2") {
-        alert("Has elegido el nivel Infinito");
+        alert("Selccionaste el modo de juego número 2");
+        nivel2.mostrarNivel();
         alert(`Tu puntuacion final es: ${comenzarJuego()}`);
     }
 }
 
 const menu = () => {
-    let opcion = prompt("Elija modo de juego, 1: nivel Aventura / 2: nivel infinito");
+    let opcion = prompt("Elija modo de juego, 1: Sendero Aventura / 2: Jungla Infinita");
     elegirNivel(opcion);
 }
 
