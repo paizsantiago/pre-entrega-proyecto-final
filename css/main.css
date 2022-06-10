@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    background-image:url(../imgs/jungla2.png);
+    background-size: cover;
+}
+
+.titulo{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 5rem;
+    text-align: center;
+    color: rgb(70, 196, 70);
+    padding-top: 12rem;
+    text-shadow: 0.2rem 0.2rem 0.1rem black;
+    text-transform: uppercase;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.titulo span{
+    color: rgb(245, 77, 77);
+    margin-top: 3rem;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.botones{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 5rem;
+}
+
+.botones button{
+    font-family: 'Press Start 2P', cursive;
+    background-color:    rgba(51, 153, 51, 0.966); /* Green */
+    border: none;
+    color: rgb(224, 224, 224);
+    height: 5rem;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1rem;
+    transition: all 0.4s;
+    text-transform: uppercase;
+    border: 0.1rem solid rgba(16, 49, 16, 0.815);
+    border-radius: 0.1rem;
+    box-shadow: .6rem .6rem 0rem rgba(0, 0, 0, 0.808);
+}
+
+.botones button:hover{
+    background-color:   rgba(76, 196, 76, 0.938) ;
+    box-shadow: .4rem .4rem 0rem rgba(0, 0, 0, 0.808);
+    color: white;
+
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 20vh;
+}
+
+footer h2{
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(175, 174, 174);
+    font-size: .6rem;
+    margin-bottom: 2rem;
+    text-shadow: 0.1rem 0.1rem 0rem black;
+}
