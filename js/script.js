@@ -1,4 +1,4 @@
-//array con personajes
+//array con personajes / niveles / puntajes
 
 let personajes = [
     {nombre: "personaje1" , id:1},
@@ -8,6 +8,14 @@ let personajes = [
 let niveles = [
     {nombre: "Sendero Aventura", numNivel: 1},
     {nombre: "Jungla Infinita", numNivel: 2}
+];
+
+let puntajes = [
+    {nombre: "Santiago", puntos: 2500},
+    {nombre: "Leonardo", puntos: 3000},
+    {nombre: "Rafael", puntos: 1020},
+    {nombre: "Miguelanguel", puntos: 1000},
+    {nombre: "Donatello", puntos: 4000}
 ];
 
 // clases
@@ -23,22 +31,29 @@ class Nivel {
     }
 }
 
+class Usuario {
+    constructor(nombre, puntos){
+        this.nombre = nombre;
+        this.puntos = puntos;
+    }
+}
+
 //variables
 
 let nivel1 = new Nivel(niveles[0]);
 let nivel2 = new Nivel(niveles[1]);
-let contador = 0;
 let verificador =  false;
 
 //funciones
 
 const comenzarJuego = () =>{ //simula un contador de puntos al esquivar los enemigos
     let verificador2 = true;
+    let contador = 0;
     let saltar = prompt("Para comenzar el juego escriba: si");
         while (saltar.toLowerCase() === "si") {
             contador++;
             if(Number(contador) === 5 && verificador === true){
-                alert("Felicidades has superado el nivel Aventura");
+                alert("Felicidades has superado Sendero Aventura");
                 verificador2 = false;
                 break;
             }
@@ -48,7 +63,7 @@ const comenzarJuego = () =>{ //simula un contador de puntos al esquivar los enem
         if (saltar === "no") {
             alert("Has perdido :(");
         }else if (verificador2 === true) {
-            alert("Respuesta inválida")
+            alert("Respuesta inválida");
         }   
         return contador;
 }
@@ -62,7 +77,20 @@ const elegirNivel = (opcion) =>{ //selector de niveles
     }else if (opcion === "2") {
         alert("Selccionaste el modo de juego número 2");
         nivel2.mostrarNivel();
-        alert(`Tu puntuacion final es: ${comenzarJuego()}`);
+        let puntos = comenzarJuego();
+        let nombreUsuario = prompt("Ingrese su nombre");
+        let usuarioNuevo = new Usuario(nombreUsuario, puntos);
+        puntajes.push(usuarioNuevo);
+        puntajes.sort((a,b) => {
+            if (a.puntos < b.puntos) {
+                return 1;
+            }
+            if ((a.puntos > b.puntos)) {
+                return -1;
+            }
+            return 0;
+        });
+        console.log(puntajes);
     }
 }
 
