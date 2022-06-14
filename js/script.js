@@ -91,6 +91,12 @@ const elegirNivel = (opcion) =>{ //selector de niveles
             return 0;
         });
         console.log(puntajes);
+        let puestoTop = puntajes.indexOf(usuarioNuevo) + 1;
+        if (Number(puestoTop)<= 5) {
+            alert(`Felicidades entraste al top 5, tu puesto es: ${puestoTop}`);
+        }else{
+            alert(`Que lastima, no clasificaste al top 5, tu puesto es: ${puestoTop}`);
+        }
     }
 }
 
