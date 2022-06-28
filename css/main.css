@@ -8,15 +8,15 @@
 body{
     background-image:url(../imgs/jungla2.png);
     background-size:cover;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .titulo{
-    font-family: 'Press Start 2P', cursive;
     font-size: 5rem;
     text-align: center;
     color: rgb(70, 196, 70);
     padding-top: 12rem;
-    text-shadow: 0.2rem 0.2rem 0.1rem black;
+    text-shadow: 0.4rem 0.4rem 0.1rem black;
     text-transform: uppercase;
     /* display: flex;
     flex-direction: column; */
@@ -33,6 +33,7 @@ body{
     align-items: center;
     flex-direction: column;
     height: 80vh;
+    position: relative;
 }
 
 .botones{
@@ -58,26 +59,155 @@ body{
     border: 0.1rem solid rgba(16, 49, 16, 0.815);
     border-radius: 0.1rem;
     box-shadow: .6rem .6rem 0rem rgba(0, 0, 0, 0.808);
+    cursor: pointer;
 }
 
 .botones button:hover{
     background-color:   rgba(76, 196, 76, 0.938) ;
     box-shadow: .4rem .4rem 0rem rgba(0, 0, 0, 0.808);
-    color: white;
-
+    color: rgb(34, 77, 15);
 }
 
-footer{
+.instrucciones{
+    display: none;
+    justify-content: space-around;
+    position: absolute;
+    top: 13rem;
+    gap: 1rem;
+    animation-name: fadeCards;
+    animation-iteration-count:initial;
+    animation-duration: .9s;
+}
+
+.instrucciones div{
+    background-color: rgb(187, 152, 133);
+    width: 25vw;
+    padding: 2rem;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 20vh;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: .3rem5;
+    border: solid rgba(35, 83, 35, 0.938) .2rem;
+    gap: 2rem;
 }
 
-footer h2{
-    font-family: 'Press Start 2P', cursive;
-    color: rgb(175, 174, 174);
-    font-size: .6rem;
-    margin-bottom: 2rem;
-    text-shadow: 0.1rem 0.1rem 0rem black;
+.instrucciones div h2, .instrucciones div h3{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.3rem;
+    padding-top: 1.3rem;
+    color: whitesmoke;
+    line-height: 1.7rem;
 }
+
+.instrucciones div img{
+    border: solid rgba(35, 83, 35, 0.938) .2rem;
+    padding: 0;
+}
+
+@keyframes fadeCards {
+    from {
+      opacity: 0.1%; }
+    to {
+      opacity: 100%; } }
+
+.cardMovimiento{
+    box-shadow: 0 0 0 100vmax rgb(0 0 0 / .9);
+}
+
+.cardMovimiento h2{
+    letter-spacing: .3rem;
+    margin-top: .6rem;
+}
+
+.cardSenderoAventura h3{
+    letter-spacing: .4rem;
+}
+
+.cardJunglaInfinita h3{
+    letter-spacing: .5rem;
+}
+
+.personajesModos{
+    display: none;
+    justify-content: space-around;
+    gap: 3rem;
+    position: absolute;
+    top: 12rem;
+    animation-name: fadeCards;
+    animation-iteration-count:initial;
+    animation-duration: .8s;
+}
+
+.personajesModos div{
+    background-color: rgb(187, 152, 133);
+    width: 25vw;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: .3rem5;
+    border: solid rgba(35, 83, 35, 0.938) .2rem;
+    gap: 2rem;
+    cursor: pointer;
+    background-size: cover;
+}
+
+.personajesModos div h2{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.3rem;
+    padding-top: 1.3rem;
+    color: whitesmoke;
+    line-height: 1.7rem;
+}
+
+.personajeModo1{
+    box-shadow: 0 0 0 100vmax rgb(0 0 0 / .9);
+}
+
+.topPuntuaciones{
+    display: none;
+    position: absolute;
+    top: 13rem;
+    gap: 1rem;
+    animation-name: fadeCards;
+    animation-iteration-count:initial;
+    animation-duration: .8s;
+    background-color: rgb(187, 152, 133);
+    width: 50vw;
+    height: 35rem;
+    padding: 7rem;
+    border-radius: .3rem5;
+    border: solid rgba(35, 83, 35, 0.938) .2rem;
+    box-shadow: 0 0 0 100vmax rgb(0 0 0 / .9);
+    color: whitesmoke;
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.topPuntuaciones h4{
+    color: rgb(49, 44, 44);
+    text-shadow: .1rem -.1rem 0.1rem white;
+}
+
+.topPuntuaciones ol{
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
+    margin-top: 3rem;
+}
+
+.topPuntuaciones ol li{
+    margin: .5rem;
+    width: 100%;
+    
+}
+
