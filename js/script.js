@@ -182,22 +182,19 @@ const checkUsuario = () =>{
 // funciones para esconder y mostrar los elementos
 
 const mostrarMenu = () =>{
-    hiddenLogin();
+    const loginUsuario = document.querySelector('.loginUsuario');
+    loginUsuario.style.display = 'none';
     botones.style.display = 'flex';
     inputNombre.style.display = 'none';
 }
 
 const mostrarInput = () =>{
-    hiddenLogin();
+    const loginUsuario = document.querySelector('.loginUsuario');
+    loginUsuario.style.display = 'none';
     localStorage.removeItem('nombreUsuario');
     inputNombre.style.display = 'flex';
     botones.style.display = 'none';
     
-}
-
-const hiddenLogin = () =>{
-    const loginUsuario = document.querySelector('.loginUsuario');
-    loginUsuario.style.display = 'none';
 }
 
 // una vez se carga la pagina, llama a funcion checkUsuario
