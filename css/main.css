@@ -36,6 +36,77 @@ body{
     position: relative;
 }
 
+.inputNombre{
+    background-color: rgba(0, 0, 0, 0.671);
+    box-shadow: .4rem .4rem 0rem rgba(0, 0, 0, 0.808);
+    height: 30%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputNombre form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputNombre label{
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: whitesmoke;
+}
+
+.inputNombre form input:hover{
+    background-color: rgb(221, 220, 220);
+}
+
+.inputNombre form input{
+    font-family: 'Press Start 2P', cursive;
+    border: none;
+    height: 3rem;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: .9rem;
+    transition: all 0.4s;
+    text-transform: uppercase;
+    border: 0.1rem solid rgba(16, 49, 16, 0.815);
+    border-radius: 0.1rem;
+    cursor: pointer;
+}
+
+.inputNombre form button{
+    font-family: 'Press Start 2P', cursive;
+    background-color:rgba(51, 153, 51, 0.966); /* Green */
+    border: none;
+    color: rgb(224, 224, 224);
+    height: 3rem;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: .9rem;
+    transition: all 0.4s;
+    text-transform: uppercase;
+    border: 0.1rem solid rgba(16, 49, 16, 0.815);
+    border-radius: 0.1rem;
+    box-shadow: .3rem .3rem 0rem rgba(0, 0, 0, 0.808);
+    cursor: pointer;
+    width: 100%;
+}
+
+.inputNombre form button:hover{
+    background-color:   rgba(76, 196, 76, 0.938) ;
+    box-shadow: .1rem .1rem 0rem rgba(0, 0, 0, 0.808);
+    color: rgb(34, 77, 15);
+}
+
 .botones{
     display: flex;
     flex-direction: column;
@@ -211,3 +282,49 @@ body{
     
 }
 
+.loginUsuario{
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.671);
+    box-shadow: .4rem .4rem 0rem rgba(0, 0, 0, 0.808);
+    height: 30%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginUsuario p{
+    text-align: center;
+    margin: 1rem;
+    font-size: 1.6rem;
+    color: rgb(245, 77, 77);
+    text-shadow: 0.2rem 0.2rem 0.1rem black;  
+}
+
+.loginUsuario button{
+    font-family: 'Press Start 2P', cursive;
+    background-color:rgba(51, 153, 51, 0.966); /* Green */
+    border: none;
+    color: rgb(224, 224, 224);
+    height: 3rem;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: .9rem;
+    transition: all 0.4s;
+    text-transform: uppercase;
+    border: 0.1rem solid rgba(16, 49, 16, 0.815);
+    border-radius: 0.1rem;
+    box-shadow: .4rem .4rem 0rem rgba(0, 0, 0, 0.808);
+    cursor: pointer;
+    margin: 1rem;
+    width: 50%;
+}
+
+.loginUsuario button:hover{
+    background-color:   rgba(76, 196, 76, 0.938) ;
+    box-shadow: .3rem .3rem 0rem rgba(0, 0, 0, 0.808);
+    color: rgb(34, 77, 15);
+}

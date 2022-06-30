@@ -18,7 +18,7 @@ let puntajes = [
     {nombre: "Donatello", puntos: 4000}
 ];
 
-// // clases
+// clases
 
 class Nivel {
     constructor(nivel){
@@ -46,71 +46,12 @@ class Personaje {
 //     }
 // }
 
-// //variables
+//variables
 
 let nivel1 = new Nivel(niveles[0]);
 let nivel2 = new Nivel(niveles[1]);
 let jones = new Personaje(personajesArray[0]);
 let marion = new Personaje(personajesArray[1]);
-
-// let verificador =  false;
-
-// //funciones
-
-// const comenzarJuego = () =>{ //simula un contador de puntos al esquivar los enemigos
-//     let verificador2 = true;
-//     let contador = 0;
-//     let saltar = prompt("Para comenzar el juego escriba: si");
-//         while (saltar.toLowerCase() === "si") {
-//             contador++;
-//             if(Number(contador) === 5 && verificador === true){
-//                 alert("Felicidades has superado Sendero Aventura");
-//                 verificador2 = false;
-//                 break;
-//             }
-//             alert("Se aproxima un enemigo");
-//             saltar = prompt("Desea saltarlo? Escriba: Si / No");
-//         }
-//         if (saltar === "no") {
-//             alert("Has perdido :(");
-//         }else if (verificador2 === true) {
-//             alert("Respuesta inválida");
-//         }   
-//         return contador;
-// }
-
-// const elegirNivel = (opcion) =>{ //selector de niveles
-//     if (opcion === "1") {
-//         verificador = true;
-//         alert("Selccionaste el modo de juego número 1");
-//         nivel1.mostrarNivel();
-//         comenzarJuego();
-//     }else if (opcion === "2") {
-//         alert("Selccionaste el modo de juego número 2");
-//         nivel2.mostrarNivel();
-//         let puntos = comenzarJuego();
-//         let nombreUsuario = prompt("Ingrese su nombre");
-//         let usuarioNuevo = new Usuario(nombreUsuario, puntos);
-//         puntajes.push(usuarioNuevo);
-//         puntajes.sort((a,b) => {
-//             if (a.puntos < b.puntos) {
-//                 return 1;
-//             }
-//             if ((a.puntos > b.puntos)) {
-//                 return -1;
-//             }
-//             return 0;
-//         });
-//         console.log(puntajes);
-//         let puestoTop = puntajes.indexOf(usuarioNuevo) + 1;
-//         if (Number(puestoTop)<= 5) {
-//             alert(`Felicidades entraste al top 5, tu puesto es: ${puestoTop}`);
-//         }else{
-//             alert(`Que lastima, no clasificaste al top 5, tu puesto es: ${puestoTop}`);
-//         }
-//     }
-// }
-
 
 const contenedor = document.querySelector('.contenedor');
 const botonInstrucciones = document.querySelector('.botonInstrucciones');
@@ -122,15 +63,19 @@ const listaPuntajes = document.querySelector('.listaPuntajes');
 const divPersonajes = document.querySelector('.personajesModos');
 const divPersonaje1 = document.querySelector('.personajeModo1');
 const divPersonaje2 = document.querySelector('.personajeModo2');
+const loginBoton = document.querySelector('.loginBoton');
+const inputNombre = document.querySelector('.inputNombre');
+const botones = document.querySelector('.botones');
+let valorInput;
 
 //boton de "jugar" (permite seleccionar un personaje, y luego el modo de juego);
 
 botonJugar.onclick  = () =>{  
     divPersonajes.style.display = "flex";
     divPersonaje1.innerHTML = `<h2>${jones.nombre}</h2>
-                               <img src="../imgs/personajePrincipal.png">`;
+                               <img src="imgs/personajePrincipal.png">`;
     divPersonaje2.innerHTML = `<h2>${marion.nombre}</h2>
-                               <img src="../imgs/personajePrincipal.png">`;                 
+                               <img src="imgs/personajePrincipal.png">`;                 
 }
 
 divPersonaje1.onclick = () =>{
@@ -142,7 +87,7 @@ divPersonaje2.onclick = () =>{
     divPersonaje2.onclick = () =>{
         contenedor.innerHTML = `
         <div class="mapaJuego" style="width: 100%; height: 70%;">
-            <img src="../imgs/jungla2.png" style="width: 100%; height: 100%">
+            <img src="imgs/jungla2.png" style="width: 100%; height: 100%">
         </div>
         <div class="panel" style="width: 100%; height: 30%; background-color: whitesmoke">
         </div>
@@ -176,19 +121,21 @@ puntuaciones.onblur = () =>{
 let modeladoCards = () =>{
     divPersonaje1.innerHTML = `<h2>${nivel1.nombre}</h2>`;
     divPersonaje1.style.cssText = `
-    background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.300)) , url(../imgs/jungla4.png); 
+    background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.300)) , url(imgs/jungla4.png); 
     justify-content: center;
     align-items: center;
     height: 60vh;
     `
     divPersonaje2.innerHTML = `<h2>${nivel2.nombre}</h2>`;
     divPersonaje2.style.cssText = `
-    background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.300)) , url(../imgs/jungla2.png); 
+    background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.300)) , url(imgs/jungla2.png); 
     justify-content: center;
     align-items: center;
     height: 60vh;
     `
 }
+
+// completa la tabla de puntuaciones
 
 let rellenoPuntuaciones = () =>{
     puntajes.sort((a,b) => {
@@ -207,3 +154,49 @@ let rellenoPuntuaciones = () =>{
     }
 }
 
+// muestra el menu luego de ingresar el nombre del usuario
+
+loginBoton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const nombreUsuario = document.querySelector('#nombre');
+    valorInput = nombreUsuario.value;
+    localStorage.setItem('nombreUsuario', valorInput);
+    alert("Has logueado con éxito");
+    mostrarMenu();
+})
+
+// verifica si es el mismo usuario o uno distinto
+
+const checkUsuario = () =>{
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
+    if(nombreUsuario){
+        inputNombre.style.display = 'none';
+        const div = document.createElement('div');
+        div.className = "loginUsuario";
+        div.innerHTML = `
+        <p>Hola ${nombreUsuario}</p>
+        <button class="newGame" onclick="mostrarInput()">Nuevo Juego</button>
+        <button onclick="mostrarMenu()">Continuar</button>
+        `;
+        contenedor.appendChild(div);
+    }
+}
+
+// funciones para esconder y mostrar los elementos
+
+const mostrarMenu = () =>{
+    const loginUsuario = document.querySelector('.loginUsuario');
+    botones.style.display = 'flex';
+    inputNombre.style.display = 'none';
+    loginUsuario.style.display = 'none';
+}
+
+const mostrarInput = () =>{
+    const loginUsuario = document.querySelector('.loginUsuario');
+    localStorage.removeItem('nombreUsuario');
+    inputNombre.style.display = 'flex';
+    botones.style.display = 'none';
+    loginUsuario.style.display = 'none';
+}
+
+window.onload = checkUsuario;
