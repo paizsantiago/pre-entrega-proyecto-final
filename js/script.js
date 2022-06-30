@@ -39,19 +39,15 @@ class Personaje {
 
 }
 
-// class Usuario {
-//     constructor(nombre, puntos){
-//         this.nombre = nombre;
-//         this.puntos = puntos;
-//     }
-// }
-
 //variables
 
 let nivel1 = new Nivel(niveles[0]);
 let nivel2 = new Nivel(niveles[1]);
 let jones = new Personaje(personajesArray[0]);
 let marion = new Personaje(personajesArray[1]);
+let valorInput;
+
+//variables DOM
 
 const contenedor = document.querySelector('.contenedor');
 const botonInstrucciones = document.querySelector('.botonInstrucciones');
@@ -66,7 +62,6 @@ const divPersonaje2 = document.querySelector('.personajeModo2');
 const loginBoton = document.querySelector('.loginBoton');
 const inputNombre = document.querySelector('.inputNombre');
 const botones = document.querySelector('.botones');
-let valorInput;
 
 //boton de "jugar" (permite seleccionar un personaje, y luego el modo de juego);
 
@@ -105,6 +100,8 @@ botonInstrucciones.onfocus = () =>{
 botonInstrucciones.onblur = () =>{
     instrucciones.style.display = 'none';
 }
+
+// puntuaciones
 
 puntuaciones.onfocus = () =>{
     rellenoPuntuaciones(); 
@@ -185,18 +182,24 @@ const checkUsuario = () =>{
 // funciones para esconder y mostrar los elementos
 
 const mostrarMenu = () =>{
-    const loginUsuario = document.querySelector('.loginUsuario');
+    hiddenLogin();
     botones.style.display = 'flex';
     inputNombre.style.display = 'none';
-    loginUsuario.style.display = 'none';
 }
 
 const mostrarInput = () =>{
-    const loginUsuario = document.querySelector('.loginUsuario');
+    hiddenLogin();
     localStorage.removeItem('nombreUsuario');
     inputNombre.style.display = 'flex';
     botones.style.display = 'none';
+    
+}
+
+const hiddenLogin = () =>{
+    const loginUsuario = document.querySelector('.loginUsuario');
     loginUsuario.style.display = 'none';
 }
+
+// una vez se carga la pagina, llama a funcion checkUsuario
 
 window.onload = checkUsuario;
