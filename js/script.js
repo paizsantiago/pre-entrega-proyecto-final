@@ -73,10 +73,9 @@ const botones = document.querySelector('.botones');
 
 botonJugar.onclick  = () =>{  
     divPersonajes.style.display = "flex";
+    divPersonaje2.style.display = "none";
     divPersonaje1.innerHTML = `<h2>${jones.nombre}</h2>
-                               <img src="imgs/personajePrincipal.png">`;
-    divPersonaje2.innerHTML = `<h2>${marion.nombre}</h2>
-                               <img src="imgs/personajePrincipal.png">`;                 
+                               <img src="imgs/personajePrincipal.png">`;             
 }
 
 divPersonaje1.onclick = () =>{
@@ -85,16 +84,6 @@ divPersonaje1.onclick = () =>{
 
 divPersonaje2.onclick = () =>{
     modeladoCards();
-    divPersonaje2.onclick = () =>{
-        contenedor.innerHTML = `
-        <div class="mapaJuego" style="width: 100%; height: 70%;">
-            <img src="imgs/jungla2.png" style="width: 100%; height: 100%">
-        </div>
-        <div class="panel" style="width: 100%; height: 30%; background-color: whitesmoke">
-        </div>
-        `;
-        contenedor.style.height = "100vh";
-    }
 }
 
 //boton de instrucciones (muestra las mismas)
@@ -129,7 +118,7 @@ let modeladoCards = () =>{
     align-items: center;
     height: 60vh;
     `
-    divPersonaje2.innerHTML = `<h2>${nivel2.nombre}</h2>`;
+    divPersonaje2.innerHTML = `<a href="juego/juego.html" class="tituloJuego"><h2>${nivel2.nombre}</h2></a>`;
     divPersonaje2.style.cssText = `
     background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.300)) , url(imgs/jungla2.png); 
     justify-content: center;

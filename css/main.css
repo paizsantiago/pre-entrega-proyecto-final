@@ -9,6 +9,7 @@ body{
     background-image:url(../imgs/jungla2.png);
     background-size:cover;
     font-family: 'Press Start 2P', cursive;
+    overflow: hidden;
 }
 
 .titulo{
@@ -327,4 +328,9 @@ body{
     background-color:   rgba(76, 196, 76, 0.938) ;
     box-shadow: .3rem .3rem 0rem rgba(0, 0, 0, 0.808);
     color: rgb(34, 77, 15);
+}
+
+
+.tituloJuego{
+    text-decoration: none;
 }
