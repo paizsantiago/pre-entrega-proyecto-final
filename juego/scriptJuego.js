@@ -39,7 +39,7 @@ function dibujarFondo(){
   if (tiempo<0) tiempo = tiempo + 3840;	
 }
 
-//MOVIMIENTO TANTO DEL ENEMIGO
+// MOVIMIENTO TANTO DEL ENEMIGO
 
 function movimientoEnemigo (){
   if (enemigo.x < -100) {

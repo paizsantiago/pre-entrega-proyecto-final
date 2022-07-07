@@ -153,8 +153,30 @@ loginBoton.addEventListener('click', (e) => {
     const nombreUsuario = document.querySelector('#nombre');
     valorInput = nombreUsuario.value;
     localStorage.setItem('nombreUsuario', valorInput);
-    alert("Has logueado con éxito");
-    mostrarMenu();
+    if (valorInput === "") {
+        Toastify({
+            text: "Error, has ingresado un dato incorrecto",
+            className: "info",
+            duration: 1000,
+            position: "center",
+            style: {
+              background: "linear-gradient(to right, rgb(245, 77, 77), rgb(245, 77, 77)",
+              boxShadow: "none",
+            }
+          }).showToast();
+    }else{
+        Toastify({
+            text: "Te has logueado con éxito",
+            className: "info",
+            duration: 1000,
+            position:"center",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast();
+          mostrarMenu();
+    }
+    
 })
 
 // verifica si es el mismo usuario o uno distinto
