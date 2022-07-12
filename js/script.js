@@ -129,21 +129,32 @@ let modeladoCards = () =>{
 
 // completa la tabla de puntuaciones
 
-let rellenoPuntuaciones = () =>{
-    puntajes.sort((a,b) => {
-        if (a.puntos < b.puntos) {
-            return 1;
+let rellenoPuntuaciones = () =>{ //u
+    listaPuntajes.innerHTML = "Cargando..."; // utilizo fetch para llamar al json donde se encuentran las mejores puntuaciones
+    fetch("../json/puntajes.json")
+    .then((respuesta)=>{
+        return respuesta.json();
+    }).then((resultadoArray) => {
+        listaPuntajes.innerHTML = "";
+        const top5Puntuaciones = resultadoArray;
+            top5Puntuaciones.sort((a,b) => {
+                if (a.puntos < b.puntos) {
+                    return 1;
+                }
+                if ((a.puntos > b.puntos)) {
+                    return -1;
+                }
+                return 0;
+            });
+        for (const usuario of top5Puntuaciones){
+            const li = document.createElement("li");
+                li.innerHTML = `<p>Nombre: ${usuario.nombre}, Puntaje: ${usuario.puntos}</p>`
+                listaPuntajes.append(li);
         }
-        if ((a.puntos > b.puntos)) {
-            return -1;
-        }
-        return 0;
+    })
+    .catch((error) => {
+        listaPuntajes.innerHTML = "Error"; 
     });
-    for (const puntaje of puntajes){
-        const li = document.createElement("li");
-        li.innerHTML = `<p>Nombre: ${puntaje.nombre}, Puntaje: ${puntaje.puntos}</p>`
-        listaPuntajes.append(li);
-    }
 }
 
 // muestra el menu luego de ingresar el nombre del usuario
@@ -172,6 +183,7 @@ loginBoton.addEventListener('click', (e) => {
             position:"center",
             style: {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
+              boxShadow: "none",
             }
           }).showToast();
           mostrarMenu();
