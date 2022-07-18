@@ -2,7 +2,6 @@
 
 let personajesArray = [
     {nombre: "Jones" , id:1},
-    {nombre: "Marion" , id:2}
 ];
 
 let niveles = [
@@ -10,13 +9,6 @@ let niveles = [
     {nombre: "Jungla Infinita", numNivel: 2}
 ];
 
-let puntajes = [
-    {nombre: "Santiago", puntos: 2500},
-    {nombre: "Leonardo", puntos: 3000},
-    {nombre: "Rafael", puntos: 1020},
-    {nombre: "Miguelangel", puntos: 1000},
-    {nombre: "Donatello", puntos: 4000}
-];
 
 // clases
 
@@ -24,10 +16,6 @@ class Nivel {
     constructor(nivel){
         this.nombre = nivel.nombre;
         this.numNivel = nivel.numNivel;
-    }
-
-    mostrarNivel(){
-        alert(`${this.nombre}, Episodio: ${this.numNivel}`);
     }
 }
 
@@ -51,8 +39,8 @@ class Personaje {
 let nivel1 = new Nivel(niveles[0]);
 let nivel2 = new Nivel(niveles[1]);
 let jones = new Personaje(personajesArray[0]);
-let marion = new Personaje(personajesArray[1]);
 let valorInput;
+let arrayPuntajes;
 
 const contenedor = document.querySelector('.contenedor');
 const botonInstrucciones = document.querySelector('.botonInstrucciones');
@@ -74,15 +62,12 @@ const botones = document.querySelector('.botones');
 botonJugar.onclick  = () =>{  
     divPersonajes.style.display = "flex";
     divPersonaje2.style.display = "none";
+    divPersonaje1.style.cursor = "pointer";
     divPersonaje1.innerHTML = `<h2>${jones.nombre}</h2>
                                <img src="imgs/personajePrincipal.png">`;             
 }
 
 divPersonaje1.onclick = () =>{
-    modeladoCards();
-}
-
-divPersonaje2.onclick = () =>{
     modeladoCards();
 }
 
@@ -111,7 +96,9 @@ puntuaciones.onblur = () =>{
 //funcion que le da los estilos a los divs dentro del html
 
 let modeladoCards = () =>{
-    divPersonaje1.innerHTML = `<h2>${nivel1.nombre}</h2>`;
+    divPersonaje1.innerHTML = `<h2>${nivel1.nombre}</h2>
+    <h3>(Proximamente)</h3>
+    `;
     divPersonaje1.style.cssText = `
     background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.300)) , url(imgs/jungla4.png); 
     justify-content: center;
@@ -129,14 +116,19 @@ let modeladoCards = () =>{
 
 // completa la tabla de puntuaciones
 
-let rellenoPuntuaciones = () =>{ //u
-    listaPuntajes.innerHTML = "Cargando..."; // utilizo fetch para llamar al json donde se encuentran las mejores puntuaciones
+let rellenoPuntuaciones = () =>{   
+    const localNombre = localStorage.getItem('nombreUsuario');
+    const localPuntuacion = localStorage.getItem('puntuacionUsuario');
+    // utilizo fetch para llamar al json donde se encuentran las mejores puntuaciones
     fetch("../json/puntajes.json")
     .then((respuesta)=>{
         return respuesta.json();
     }).then((resultadoArray) => {
+        let contadorTOP = 0;
+        const usuarioTop = {puntos: localPuntuacion, nombre: localNombre};
         listaPuntajes.innerHTML = "";
         const top5Puntuaciones = resultadoArray;
+        top5Puntuaciones.push(usuarioTop);
             top5Puntuaciones.sort((a,b) => {
                 if (a.puntos < b.puntos) {
                     return 1;
@@ -147,10 +139,18 @@ let rellenoPuntuaciones = () =>{ //u
                 return 0;
             });
         for (const usuario of top5Puntuaciones){
+            contadorTOP++;
             const li = document.createElement("li");
                 li.innerHTML = `<p>Nombre: ${usuario.nombre}, Puntaje: ${usuario.puntos}</p>`
                 listaPuntajes.append(li);
+            if (contadorTOP === 5) {
+                break;
+            }
         }
+        const p = document.createElement("p");
+        p.className = "ultimaPuntuacion";
+        p.innerHTML = `<p>${localNombre}, tu ultima puntuacion fue ${localPuntuacion}</p>`;
+        listaPuntajes.append(p);
     })
     .catch((error) => {
         listaPuntajes.innerHTML = "Error"; 
@@ -220,6 +220,7 @@ const mostrarMenu = () =>{
 const mostrarInput = () =>{
     const loginUsuario = document.querySelector('.loginUsuario');
     localStorage.removeItem('nombreUsuario');
+    localStorage.setItem('puntuacionUsuario', 0);
     inputNombre.style.display = 'flex';
     botones.style.display = 'none';
     loginUsuario.style.display = 'none';

@@ -4,10 +4,83 @@
     padding: 0;
     box-sizing: border-box;
     overflow: hidden;
+    font-family: 'Press Start 2P', cursive;
+    user-select: none;
+}
+
+canvas {
+   box-shadow: 0rem 0rem .5rem rgb(25, 58, 25);
 }
 
 .estadisticas{
-    height: auto;
-    background-color: whitesmoke;
+    height: 40vh;
+    background-color: #2e2e2a;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    justify-content: space-between;
+}
+
+.info{
+    display: flex;
+    justify-content: space-around;
+    width: 75%;
+    align-items: center;
+}
+
+.info h1, .info h2, .info h3{
+    font-size: 1.2rem;
+    color: whitesmoke;
+    letter-spacing: 0.1rem;
+}
+
+button{
+    font-family: 'Press Start 2P', cursive;
+    background-color:    #6e5d39; /* Green */
+    border: none;
+    color: rgb(224, 224, 224);
+    height: 5rem;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1rem;
+    transition: all 0.4s;
+    text-transform: uppercase;
+    border: 0.1rem solid rgba(16, 49, 16, 0.815);
+    border-radius: 0.1rem;
+    box-shadow: .2rem .2rem 0rem rgba(0, 0, 0, 0.808);
+    cursor: pointer;
+    margin: 1rem;
+    width: 70%;
+}
+
+a{
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+}
+
+
+i{
+    margin-right: .5rem;
+}
+
+button:hover{   
+    background-color:#998253 ;
+    box-shadow: .4rem .4rem 0rem rgba(0, 0, 0, 0.808);
+    color: rgb(17, 17, 17);
+}
+
+.complemento{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+}
+
+.contenedorGeneral{
+    display: flex;
+    flex-direction: column;
 }
 

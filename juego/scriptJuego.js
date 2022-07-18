@@ -3,12 +3,16 @@
 
 document.addEventListener('keydown', function(e){
   if (e.keyCode === 32) { 
-      if (personaje.y === 415 && !nivel.muerto) saltar();
+      if (personaje.y === 415 && !nivel.muerto){
+        saltar();
+        contadorSaltos++;
+      }
   }
 });
 
 //VARIABLES
 
+let contadorSaltos = 0;
 let ancho = 1920;
 let alto = 600;
 let imgPersonaje, imgFondo, imgEnemigo;
@@ -18,6 +22,11 @@ let enemigo = {x:ancho + 100, y:400};
 let fondo = {x:0, y:0};
 let variable = 6;
 let tiempo = 0;
+let indiceX = 0;
+let indiceY = 0; 
+let contador = 0;
+const botonReiniciar = document.querySelector('.reiniciar');
+const info = document.querySelector('.info');
 const canvas = document.querySelector('#canvas');
 const contexto = canvas.getContext('2d');
 
@@ -27,8 +36,24 @@ function dibujarEnemigo(){
   contexto.drawImage(imgEnemigo,0,0,2048,2048,enemigo.x, enemigo.y,250,250);
 }
 
-function dibujarPersonaje(){ 
-  contexto.drawImage(imgPersonaje,0,0,2048,2048,50,personaje.y,250,250);
+function dibujarPersonaje(){       
+      if (!nivel.muerto) {
+          if (indiceX === 0 && indiceY === 0 && contador === 8) {
+            indiceX = 1;
+        }else if(indiceX === 0 && indiceY === 1 && contador === 24){
+            indiceX = 0;
+            indiceY = 1;
+        }else if(indiceX === 1 && indiceY === 0 && contador === 32){
+          indiceX = 1;
+          indiceY = 1;
+        }else if(contador === 48){
+          indiceX = 0;
+          indiceY = 0;
+          contador = 0;
+        }
+        contador++;     
+      }
+      contexto.drawImage(imgPersonaje,indiceX*2048,indiceY*2048,2048,2048,50,  personaje.y,250,250);
 }
 
 function dibujarFondo(){
@@ -39,7 +64,7 @@ function dibujarFondo(){
   if (tiempo<0) tiempo = tiempo + 3840;	
 }
 
-// MOVIMIENTO TANTO DEL ENEMIGO
+// MOVIMIENTO TANTO DEL ENEMIGO COMO EL JUGADOR
 
 function movimientoEnemigo (){
   if (enemigo.x < -100) {
@@ -49,8 +74,6 @@ function movimientoEnemigo (){
       enemigo.x -= nivel.velocidad;
   }
 }
-
-// FUNCIONES RELACIONAS AL MOVIMIENTO DEL JUGADOR
 
 function saltar(){
   personaje.jumping = true;
@@ -73,51 +96,58 @@ function gravedad(){
 //FUNCIONES DE COLISION, Y PUNTAJE DEL USUARIO
 
 function colision(){
-  if(enemigo.x >= 50 && enemigo.x <=90){
-    if (personaje.y >= enemigo.y) {
+  if(enemigo.x >= 50 && enemigo.x < 95){
+    if (personaje.y === 415) {
       nivel.muerto = true;
       nivel.velocidad = 0;
     }
   }
+  
 }
 
 function score(){
   dificultadNivel(nivel.puntuacion);
-  contexto.font = "50px impact";
-  contexto.fillStyle = "#ffff";
-  contexto.fillText(`${nivel.puntuacion}`,1700,100);
+  contexto.font = "45px 'Press Start 2P', cursive";
+  contexto.fillStyle = "#4e0a0a";
   if(nivel.muerto){
-    contexto.fillText('GAME OVER', 800, 300);
+    contexto.fillText('GAME OVER', 750, 325);
+    localStorage.setItem('puntuacionUsuario', nivel.puntuacion);
   }
 }
 
 function dificultadNivel(nivelpuntuacion) {
-  if (nivel.puntuacion >= 5) {
-    variable = 8;
-    nivel.velocidad = 11;
-  } if (nivel.puntuacion >= 10) {
-    variable = 10;
-    nivel.velocidad = 14;
-  } if (nivel.puntuacion >= 15) {
-    variable = 11;
-    nivel.velocidad = 18;
-  } if (nivel.puntuacion >= 20) {
-    variable = 13;
-    nivel.velocidad = 20;
-  } if (nivel.puntuacion >= 30) {
-    variable = 15;
-    nivel.velocidad = 25;
-  } if (nivel.puntuacion >= 50) {
-    variable = 20;
-    nivel.velocidad = 40;
-  } if (nivel.puntuacion >= 70) {
-    variable = 25;
-    nivel.velocidad = 60;
-  }if (nivel.puntuacion >= 100) {
-    variable = 30;
-    nivel.velocidad = 75;
+  switch (nivel.puntuacion) {
+    case 5:
+      variable = 8;
+      nivel.velocidad = 11;
+      break;
+    case 10:
+      variable = 10;
+      nivel.velocidad = 14;
+      break;
+    case 15:
+      variable = 11;
+      nivel.velocidad = 18;
+      break;
+    case 20:
+      variable = 13;
+      nivel.velocidad = 20;
+      break;
+    case 30:
+      variable = 15;
+      nivel.velocidad = 25;
+      break;  
+    case 50:
+      variable = 20;
+      nivel.velocidad = 40;
+      break;
+    case 75:
+      variable = 23;
+      nivel.velocidad = 50;
+      break;  
+    default:
+      break;
   }
-  
 }
 
 //ACTUALIZA EL CANVAS EN CADA FRAME
@@ -125,6 +155,22 @@ function dificultadNivel(nivelpuntuacion) {
 const borrarCanvas = () =>{
   canvas.width = ancho;
   canvas.height = alto;
+}
+
+botonReiniciar.onclick = () =>{
+  tiempo = 0;
+  nivel.puntuacion = 0;
+  nivel.velocidad = 9;
+  nivel.muerto = false;
+  enemigo.x = ancho + 100;
+  contadorSaltos = 0;
+}
+
+function actualizarEstadisticas (){
+  info.innerHTML = `<h1>PUNTUACION: ${nivel.puntuacion}</h1>
+  <h2>VELOCIDAD DEL NIVEL: ${nivel.velocidad}</h2>
+  <h3>SALTOS: ${contadorSaltos}</h3>
+  `;
 }
 
 // INICIALIZA CANVAS Y GUARDA LAS IMAGENES
@@ -136,7 +182,7 @@ const inicializar = () =>{
   imgEnemigo = new Image();
   imgFondo = new Image();
 
-  imgPersonaje.src = '../imgs/personajePrincipal.png';
+  imgPersonaje.src = '../imgs/pruebaGif.png';
   imgEnemigo.src = '../imgs/enemigo.png';
   imgFondo.src = '../imgs/prueba.png';
 }
@@ -158,4 +204,5 @@ const principal = () =>{
   dibujarEnemigo();
   dibujarPersonaje();
   score();
+  actualizarEstadisticas();
 }

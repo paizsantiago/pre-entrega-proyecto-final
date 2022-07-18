@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+    user-select: none;
 }
 
 body{
@@ -24,7 +24,7 @@ body{
 }
 
 .titulo span{
-    color: rgb(245, 77, 77);
+    color: #f54d4d; 
     margin-top: 3rem;
 }
 
@@ -140,6 +140,12 @@ body{
     color: rgb(34, 77, 15);
 }
 
+.instrucciones div p{
+    color: rgb(56, 55, 55);
+    text-align: center;
+    
+}
+
 .instrucciones{
     display: none;
     justify-content: space-around;
@@ -175,6 +181,11 @@ body{
 .instrucciones div img{
     border: solid rgba(35, 83, 35, 0.938) .2rem;
     padding: 0;
+    width: 100%;
+}
+
+.gif23{
+    height: 55%;
 }
 
 @keyframes fadeCards {
@@ -194,6 +205,10 @@ body{
 
 .cardSenderoAventura h3{
     letter-spacing: .4rem;
+}
+
+.cardSenderoAventura p{
+    margin:1rem;
 }
 
 .cardJunglaInfinita h3{
@@ -221,7 +236,6 @@ body{
     border-radius: .3rem5;
     border: solid rgba(35, 83, 35, 0.938) .2rem;
     gap: 2rem;
-    cursor: pointer;
     background-size: cover;
 }
 
@@ -234,8 +248,21 @@ body{
     line-height: 1.7rem;
 }
 
+.personajesModos h3{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1rem;
+    padding-top: 1.3rem;
+    color: rgb(102, 100, 100);
+    line-height: 1.7rem;
+}
+
 .personajeModo1{
     box-shadow: 0 0 0 100vmax rgb(0 0 0 / .9);
+}
+
+.personajeModo2{
+    cursor: pointer;
 }
 
 .topPuntuaciones{
@@ -274,13 +301,18 @@ body{
     justify-content: center;
     align-items: center;
     text-align: start;
-    margin-top: 3rem;
+    margin-top: 3rem;;
 }
 
 .topPuntuaciones ol li{
     margin: .5rem;
     width: 100%;
-    
+}
+
+.ultimaPuntuacion{
+    margin-top: 4rem;
+    color: rgba(35, 83, 35, 0.938);
+    text-align: start;
 }
 
 .loginUsuario{
