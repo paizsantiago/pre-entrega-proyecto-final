@@ -29,6 +29,9 @@ const botonReiniciar = document.querySelector('.reiniciar');
 const info = document.querySelector('.info');
 const canvas = document.querySelector('#canvas');
 const contexto = canvas.getContext('2d');
+const divPersonaje2 = document.querySelector('.personajeModo2');
+const contenedorJuego = document.querySelector('.contenedorGeneral');
+const tituloJunglaInfinita = document.querySelector('.junglaInfinita');
 
 //FUNCIONES PARA DIBUJAR LOS ELEMENTOS SOBRE EL CANVAS
 
@@ -171,7 +174,16 @@ function actualizarEstadisticas (){
   <h2>VELOCIDAD DEL NIVEL: ${nivel.velocidad}</h2>
   <h3>SALTOS: ${contadorSaltos}</h3>
   `;
-}
+}  
+
+//ANIMACION AL INICIAR EL JUEGO
+
+const e = document.getElementById("junglaInfinita"); 
+e.addEventListener("animationend", (ev) => {
+  if (ev.type === "animationend") {
+    e.style.display = "none";
+  }
+}, false);
 
 // INICIALIZA CANVAS Y GUARDA LAS IMAGENES
 
@@ -182,9 +194,9 @@ const inicializar = () =>{
   imgEnemigo = new Image();
   imgFondo = new Image();
 
-  imgPersonaje.src = '../imgs/pruebaGif.png';
+  imgPersonaje.src = '../imgs/personajePrincipalCanvas.png';
   imgEnemigo.src = '../imgs/enemigo.png';
-  imgFondo.src = '../imgs/prueba.png';
+  imgFondo.src = '../imgs/fondo.png';
 }
 
 //BUCLE PRINCIPAL

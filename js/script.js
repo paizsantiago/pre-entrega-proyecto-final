@@ -27,20 +27,15 @@ class Personaje {
 
 }
 
-// class Usuario {
-//     constructor(nombre, puntos){
-//         this.nombre = nombre;
-//         this.puntos = puntos;
-//     }
-// }
-
-//variables
+//VARIABLES
 
 let nivel1 = new Nivel(niveles[0]);
 let nivel2 = new Nivel(niveles[1]);
 let jones = new Personaje(personajesArray[0]);
 let valorInput;
 let arrayPuntajes;
+
+//VARIABLES DOM
 
 const contenedor = document.querySelector('.contenedor');
 const botonInstrucciones = document.querySelector('.botonInstrucciones');
@@ -57,7 +52,7 @@ const inputNombre = document.querySelector('.inputNombre');
 const botones = document.querySelector('.botones');
 
 
-//boton de "jugar" (permite seleccionar un personaje, y luego el modo de juego);
+//PERMITE SELECCIONAR EL PERSONE Y MODO DE JUEGO
 
 botonJugar.onclick  = () =>{  
     divPersonajes.style.display = "flex";
@@ -71,7 +66,7 @@ divPersonaje1.onclick = () =>{
     modeladoCards();
 }
 
-//boton de instrucciones (muestra las mismas)
+//MUESTRA LAS INSTRUCCIONES
 
 botonInstrucciones.onfocus = () =>{
     instrucciones.style.display = "flex";
@@ -81,7 +76,7 @@ botonInstrucciones.onblur = () =>{
     instrucciones.style.display = 'none';
 }
 
-// puntuaciones
+//TOP PUNTUACIONES
 
 puntuaciones.onfocus = () =>{
     rellenoPuntuaciones(); 
@@ -93,7 +88,7 @@ puntuaciones.onblur = () =>{
     listaPuntajes.innerHTML = ''; 
 }
 
-//funcion que le da los estilos a los divs dentro del html
+//PROPORCIONA ESTILOS A LOS DIVS DENTRO DEL HTML
 
 let modeladoCards = () =>{
     divPersonaje1.innerHTML = `<h2>${nivel1.nombre}</h2>
@@ -114,7 +109,7 @@ let modeladoCards = () =>{
     `
 }
 
-// completa la tabla de puntuaciones
+//COMPLETA EL TOP DE PUNTUACIONES
 
 let rellenoPuntuaciones = () =>{   
     const localNombre = localStorage.getItem('nombreUsuario');
@@ -149,7 +144,7 @@ let rellenoPuntuaciones = () =>{
         }
         const p = document.createElement("p");
         p.className = "ultimaPuntuacion";
-        p.innerHTML = `<p>${localNombre}, tu ultima puntuacion fue ${localPuntuacion}</p>`;
+        p.innerHTML = `<p>${localNombre} ;) , tu ultima puntuacion fue ${localPuntuacion}</p>`;
         listaPuntajes.append(p);
     })
     .catch((error) => {
@@ -157,7 +152,7 @@ let rellenoPuntuaciones = () =>{
     });
 }
 
-// muestra el menu luego de ingresar el nombre del usuario
+//VERIFICA EL INPUT DEL LOGIN
 
 loginBoton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -191,7 +186,7 @@ loginBoton.addEventListener('click', (e) => {
     
 })
 
-// verifica si es el mismo usuario o uno distinto
+//VERIFICA SI EL USUARIO ES EL MISMO 
 
 const checkUsuario = () =>{
     const nombreUsuario = localStorage.getItem('nombreUsuario');
@@ -208,7 +203,7 @@ const checkUsuario = () =>{
     }
 }
 
-// funciones para esconder y mostrar los elementos
+//MUESTRA Y ESCONDE ELEMENTOS
 
 const mostrarMenu = () =>{
     const loginUsuario = document.querySelector('.loginUsuario');
@@ -226,6 +221,5 @@ const mostrarInput = () =>{
     loginUsuario.style.display = 'none';
 }
 
-//cuando carga llama a la funcion checkUsuario
 
-window.onload = checkUsuario;
+window.onload = checkUsuario; //LLAMA A LA FUNCION AL CARGAR LA PESTAÑA

@@ -184,7 +184,7 @@ body{
     width: 100%;
 }
 
-.gif23{
+.gifInstrucciones{
     height: 55%;
 }
 
@@ -311,7 +311,8 @@ body{
 
 .ultimaPuntuacion{
     margin-top: 4rem;
-    color: rgba(35, 83, 35, 0.938);
+    color: rgb(49, 44, 44);
+    text-shadow: .1rem -.1rem 0.1rem white;
     text-align: start;
 }
 
